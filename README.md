@@ -38,3 +38,7 @@ Step-by-step actions inside the job
 	 • Improves Dependabot’s ability to detect vulnerabilities in external libraries.
 	 • Does not affect the build or tests.
 
+Removal of the Optional Dependency-Graph Step 
+
+We removed the optional step in the workflow (point 4 in the original workflow explanation section) that submitted the Maven dependency graph to GitHub. This feature requires special repository permissions and GitHub Advanced Security capabilities, which were not asked to be enabled in this project and therefore the build resulted in consistent HTTP 403 errors during workflow execution. Since the assignment only requires automated building and testing, removing this step ensures a clean, functional CI pipeline without affecting any required functionality.
+
