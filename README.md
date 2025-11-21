@@ -37,3 +37,4 @@ Step-by-step actions inside the job
    • Submits the project’s Maven dependency graph to GitHub.
 	 • Improves Dependabot’s ability to detect vulnerabilities in external libraries.
 	 • Does not affect the build or tests.
+
