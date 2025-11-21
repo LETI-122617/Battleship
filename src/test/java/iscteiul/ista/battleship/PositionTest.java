@@ -44,6 +44,28 @@ class PositionTest {
     }
 
     @Test
+    @DisplayName("Teste 4: equals, hashCode e toString coerentes")
+    void testEqualsHashCodeAndToString() {
+        Position p1 = new Position(2, 3);
+        Position p2 = new Position(2, 3);
+        Position p3 = new Position(4, 5);
+
+        // equals já é usado noutros sítios, mas aqui fica explícito
+        assertEquals(p1, p2, "Posições com mesma linha e coluna devem ser iguais");
+        assertNotEquals(p1, p3, "Posições diferentes não devem ser iguais");
+
+        // hashCode consistente com equals
+        assertEquals(p1.hashCode(), p2.hashCode(),
+                "Objetos iguais devem ter o mesmo hashCode");
+        // não é obrigatório serem diferentes, mas em geral serão
+        assertNotEquals(p1.hashCode(), p3.hashCode(),
+                "Objetos diferentes tendem a ter hashCodes diferentes");
+
+        // toString com o formato esperado
+        assertEquals("Linha = 2 Coluna = 3", p1.toString());
+    }
+
+    @Test
     @DisplayName("Teste 3: Verificação de Adjacência.")
     void testPositionIsAdjacentTo() {
         Position centro = new Position(5, 5);

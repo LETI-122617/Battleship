@@ -17,6 +17,16 @@ class CompassTest {
     }
 
     @Test
+    @DisplayName("Teste 4: toString devolve o char correto para cada direção")
+    void testToString() {
+        assertEquals("n", Compass.NORTH.toString());
+        assertEquals("s", Compass.SOUTH.toString());
+        assertEquals("e", Compass.EAST.toString());
+        assertEquals("o", Compass.WEST.toString());
+        assertEquals("u", Compass.UNKNOWN.toString());
+    }
+
+    @Test
     @DisplayName("Teste 2: Conversão de char inválido (Limites).")
     void testCharToCompassInvalid() {
         // Caracteres inválidos devem retornar UNKNOWN

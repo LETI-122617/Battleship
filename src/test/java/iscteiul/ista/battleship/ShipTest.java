@@ -51,12 +51,42 @@ class ShipTest {
     }
 
     @Test
+    @DisplayName("Ship.buildShip: cria o tipo correto e devolve null para tipos inválidos")
+    void testBuildShipFactory() {
+        Position pos = new Position(0, 0);
+
+        Ship barca   = Ship.buildShip("barca",   Compass.NORTH, pos);
+        Ship caravela= Ship.buildShip("caravela",Compass.EAST,  pos);
+        Ship nau     = Ship.buildShip("nau",     Compass.SOUTH, pos);
+        Ship fragata = Ship.buildShip("fragata", Compass.WEST,  pos);
+        Ship galeao  = Ship.buildShip("galeao",  Compass.NORTH, pos);
+        Ship unknown = Ship.buildShip("submarino", Compass.NORTH, pos);
+
+        assertTrue(barca    instanceof Barge);
+        assertTrue(caravela instanceof Caravel);
+        assertTrue(nau      instanceof Carrack);
+        assertTrue(fragata  instanceof Frigate);
+        assertTrue(galeao   instanceof Galleon);
+
+        // tipo desconhecido deve devolver null
+        assertNull(unknown);
+    }
+
+    @Test
     @DisplayName("Ship: tooCloseTo returns false for far ship")
     void testTooFarShip() {
         Ship s1 = new Barge(Compass.NORTH, new Position(1, 1));
         Ship s2 = new Barge(Compass.NORTH, new Position(8, 8));
 
         assertFalse(s1.tooCloseTo(s2));
+    }
+
+    @Test
+    @DisplayName("Ship: toString() returns the expected formatted string")
+    void testToStringMethod() {
+        Ship s = new Barge(Compass.NORTH, new Position(2, 3));
+        String expected = "[Barca n Linha = 2 Coluna = 3]";
+        assertEquals(expected, s.toString());
     }
 
     @Test
