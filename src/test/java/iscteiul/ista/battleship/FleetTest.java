@@ -3,12 +3,15 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
-
+import org.junit.jupiter.api.Nested;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class FleetTest {
 
+    @Nested
+    @DisplayName("Impressão e Relatórios")
+    class PrintTests {
     @Test
     @DisplayName("Fleet: printAllShips executa sem lançar exceções")
     void testPrintAllShips() {
@@ -68,7 +71,11 @@ class FleetTest {
 
         assertDoesNotThrow(() -> Fleet.printShips(ships));
     }
+    }
 
+    @Nested
+    @DisplayName("Gestão de Frota (Adicionar)")
+    class ManagementTests {
     @Test
     @DisplayName("Fleet: addShip accepts a valid ship inside the board")
     void testAddValidShip() {
@@ -108,7 +115,11 @@ class FleetTest {
         assertFalse(addedSecond, "Second ship too close should be rejected");
         assertEquals(1, fleet.getShips().size());
     }
+    }
 
+    @Nested
+    @DisplayName("Pesquisa e Consulta")
+    class QueryTests {
     @Test
     @DisplayName("Fleet: getShipsLike returns only ships of the requested category")
     void testGetShipsLike() {
@@ -170,5 +181,6 @@ class FleetTest {
         assertSame(barge, ship1, "Barge should be found at its position");
         assertSame(caravel, ship2, "Caravel should be found at one of its positions");
         assertNull(none, "shipAt should return null when there is no ship");
+    }
     }
 }

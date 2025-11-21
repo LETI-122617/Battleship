@@ -3,9 +3,13 @@ package iscteiul.ista.battleship;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Nested;
 
 class CaravelTest {
 
+    @Nested
+    @DisplayName("Testes de Criação e Orientação")
+    class OrientationTests {
     @Test
     @DisplayName("Criação correta da Caravel (NORTE)")
     void testCaravelNorth() {
@@ -51,7 +55,12 @@ class CaravelTest {
             new Caravel(Compass.valueOf("INVALID"), pos);
         });
     }
+    }
 
+
+    @Nested
+    @DisplayName("Testes de Comportamento")
+    class BehaviorTests {
     @Test
     @DisplayName("Caravel ocupa posições corretamente")
     void testOccupiesPosition() {
@@ -107,5 +116,6 @@ class CaravelTest {
         caravel.shoot(new Position(8, 9)); // acerta numa posição
         caravel.shoot(new Position(8, 8)); // acerta noutra posição
         assertFalse(caravel.stillFloating());
+    }
     }
 }

@@ -2,6 +2,7 @@ package iscteiul.ista.battleship;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Nested;
 
 import java.util.List;
 
@@ -9,6 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FrigateTest {
 
+    @Nested
+    @DisplayName("Geometria e Orientação")
+    class GeometryTests {
     @Test
     @DisplayName("Frigate: correct size and category")
     void testBasicProperties() {
@@ -82,7 +86,11 @@ class FrigateTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new Frigate(Compass.UNKNOWN, new Position(0, 0)));
     }
+    }
 
+    @Nested
+    @DisplayName("Estado do Navio")
+    class StateTests {
     @Test
     @DisplayName("Frigate: stillFloating behavior works")
     void testStillFloating() {
@@ -108,5 +116,6 @@ class FrigateTest {
         assertTrue(f.occupies(new Position(2,5)));
 
         assertFalse(f.occupies(new Position(2,6)));
+    }
     }
 }
