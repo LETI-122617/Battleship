@@ -1,10 +1,4 @@
-import static org.junit.jupiter.api.Assertions.*;
-class FrigateTest {
-  package iscteiul.ista.battleship;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
-import static org.junit.jupiter.api.Assertions.*;
 
 class FrigateTest {
 
@@ -112,5 +106,4 @@ class FrigateTest {
         }
         assertFalse(frigate.stillFloating());
     }
-}
 }
