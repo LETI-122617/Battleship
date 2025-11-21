@@ -1,11 +1,73 @@
 package iscteiul.ista.battleship;
+import java.util.ArrayList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class FleetTest {
+
+    @Test
+    @DisplayName("Fleet: printAllShips executa sem lançar exceções")
+    void testPrintAllShips() {
+        Fleet fleet = new Fleet();
+        fleet.addShip(new Barge(Compass.NORTH, new Position(0, 0)));
+        fleet.addShip(new Caravel(Compass.EAST, new Position(2, 2)));
+
+        assertDoesNotThrow(fleet::printAllShips);
+    }
+
+    @Test
+    @DisplayName("Fleet: printFloatingShips executa sem lançar exceções")
+    void testPrintFloatingShipsMethod() {
+        Fleet fleet = new Fleet();
+        Barge floating = new Barge(Compass.NORTH, new Position(1, 1));
+        Barge sunk = new Barge(Compass.NORTH, new Position(3, 3));
+
+        assertTrue(fleet.addShip(floating));
+        assertTrue(fleet.addShip(sunk));
+
+        // afundar o segundo
+        sunk.shoot(new Position(3, 3));
+
+        assertDoesNotThrow(fleet::printFloatingShips);
+    }
+
+    @Test
+    @DisplayName("Fleet: printShipsByCategory executa sem lançar exceções")
+    void testPrintShipsByCategory() {
+        Fleet fleet = new Fleet();
+        fleet.addShip(new Barge(Compass.NORTH, new Position(0, 0)));
+        fleet.addShip(new Caravel(Compass.EAST, new Position(2, 2)));
+
+        assertDoesNotThrow(() -> fleet.printShipsByCategory("Barca"));
+        assertDoesNotThrow(() -> fleet.printShipsByCategory("Caravela"));
+        // categoria sem navios também não deve rebentar
+        assertDoesNotThrow(() -> fleet.printShipsByCategory("Galeao"));
+    }
+
+    @Test
+    @DisplayName("Fleet: printStatus executa sem lançar exceções")
+    void testPrintStatus() {
+        Fleet fleet = new Fleet();
+        fleet.addShip(new Barge(Compass.NORTH, new Position(0, 0)));
+        fleet.addShip(new Caravel(Compass.EAST, new Position(2, 2)));
+        fleet.addShip(new Galleon(Compass.SOUTH, new Position(4, 1)));
+
+        assertDoesNotThrow(fleet::printStatus);
+    }
+
+    @Test
+    @DisplayName("Fleet: printShips (método estático) executa sem lançar exceções")
+    void testStaticPrintShips() {
+        ArrayList<IShip> ships = new ArrayList<>();
+        ships.add(new Barge(Compass.NORTH, new Position(0, 0)));
+        ships.add(new Caravel(Compass.EAST, new Position(1, 1)));
+
+        assertDoesNotThrow(() -> Fleet.printShips(ships));
+    }
 
     @Test
     @DisplayName("Fleet: addShip accepts a valid ship inside the board")
