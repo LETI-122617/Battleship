@@ -3,9 +3,12 @@ package iscteiul.ista.battleship;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Nested;
 
 class CompassTest {
-
+    @Nested
+    @DisplayName("Conversão de Dados")
+    class ConversionTests {
     @Test
     @DisplayName("Teste 1: Conversão de char para Compass (Norte, Sul, Este, Oeste).")
     void testCharToCompassValid() {
@@ -16,6 +19,15 @@ class CompassTest {
         assertEquals(Compass.WEST, Compass.charToCompass('o'), "Char 'o' deve ser WEST");
     }
 
+        @Test
+        @DisplayName("Teste 2: Conversão de char inválido (Limites).")
+        void testCharToCompassInvalid() {
+            // Caracteres inválidos devem retornar UNKNOWN
+            assertEquals(Compass.UNKNOWN, Compass.charToCompass('x'));
+            assertEquals(Compass.UNKNOWN, Compass.charToCompass(' '));
+            assertEquals(Compass.UNKNOWN, Compass.charToCompass('1'));
+        }
+
     @Test
     @DisplayName("Teste 4: toString devolve o char correto para cada direção")
     void testToString() {
@@ -25,16 +37,12 @@ class CompassTest {
         assertEquals("o", Compass.WEST.toString());
         assertEquals("u", Compass.UNKNOWN.toString());
     }
-
-    @Test
-    @DisplayName("Teste 2: Conversão de char inválido (Limites).")
-    void testCharToCompassInvalid() {
-        // Caracteres inválidos devem retornar UNKNOWN
-        assertEquals(Compass.UNKNOWN, Compass.charToCompass('x'));
-        assertEquals(Compass.UNKNOWN, Compass.charToCompass(' '));
-        assertEquals(Compass.UNKNOWN, Compass.charToCompass('1'));
     }
 
+
+    @Nested
+    @DisplayName("Propriedades")
+    class PropertyTests {
     @Test
     @DisplayName("Teste 3: Verificar o caracter associado (Getter).")
     void testGetDirection() {
@@ -44,5 +52,6 @@ class CompassTest {
         assertEquals('e', Compass.EAST.getDirection());
         assertEquals('o', Compass.WEST.getDirection());
         assertEquals('u', Compass.UNKNOWN.getDirection());
+    }
     }
 }

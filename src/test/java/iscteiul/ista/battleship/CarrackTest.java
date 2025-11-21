@@ -2,6 +2,7 @@ package iscteiul.ista.battleship;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Nested;
 
 import java.util.List;
 
@@ -9,6 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CarrackTest {
 
+    @Nested
+    @DisplayName("Configuração e Orientação")
+    class OrientationTests {
     @Test
     @DisplayName("Carrack: correct size and category")
     void testBasicProperties() {
@@ -70,6 +74,17 @@ class CarrackTest {
         assertEquals(7, pos.get(2).getColumn());  // corrected
     }
 
+        @Test
+        @DisplayName("Carrack: invalid bearing throws IllegalArgumentException")
+        void testInvalidBearingThrows() {
+            assertThrows(IllegalArgumentException.class,
+                    () -> new Carrack(Compass.UNKNOWN, new Position(0, 0)));
+        }
+    }
+
+    @Nested
+    @DisplayName("Lógica de Jogo")
+    class GameplayTests {
     @Test
     @DisplayName("Carrack: occupies returns true for all its positions and false for outside")
     void testOccupies() {
@@ -96,11 +111,6 @@ class CarrackTest {
         }
         assertFalse(c.stillFloating(), "With all positions hit, the ship should not float");
     }
-
-    @Test
-    @DisplayName("Carrack: invalid bearing throws IllegalArgumentException")
-    void testInvalidBearingThrows() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new Carrack(Compass.UNKNOWN, new Position(0, 0)));
     }
+
 }
