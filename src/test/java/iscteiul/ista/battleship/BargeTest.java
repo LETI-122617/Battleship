@@ -97,7 +97,7 @@ class BargeTest {
         Compass bearing = Compass.NORTH;
         Position pos = new Position(7, 7);
         Barge barge1 = new Barge(bearing, pos);
-        Barge barge2 = new Barge(bearing, new Position(7, 7)); // mesma posição
+        Barge barge2 = new Barge(bearing, new Position(7, 8)); // mesma posição
         assertTrue(barge1.tooCloseTo(barge2));
     }
 
