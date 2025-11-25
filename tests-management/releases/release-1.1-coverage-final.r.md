@@ -3,9 +3,9 @@
 ## Operations Checklist
 
 ### Objectives
-* [unknown] Generate coverage reports {#OP-001}
+* [x] Generate coverage reports {#OP-001}
 
-* [unknown] Execute unit tests automatically {#OP-002}
+* [x] Execute unit tests automatically {#OP-002}
     tags: #checklist, #operations
 
 
@@ -14,29 +14,30 @@
 ### Test Cases
 
 #### Core Tests
-* [unknown] GameTest {#TC-006}
+* [x] GameTest - **passed** @LETI-110331 {#TC-006}
 
-* [unknown] FleetTest {#TC-007}
+* [x] FleetTest - **passed** @LETI-110331 {#TC-007}
 
-* [unknown] PositionTest {#TC-008}
+* [x] PositionTest - **passed** @LETI-110331  {#TC-008}
 
-* [unknown] ShipTest {#TC-009}
+* [x] ShipTest - **passed** @LETI-110331  {#TC-009}
 
+Tags: #unit-tests, #release-1.0
 
 #### Excluded
-* [unknown] TasksTest (UI interaction, not tested) {#TC-010}
+* [x] (TasksTest UI interaction, not tested) - **skipped** @LETI-110331 (UI interaction, not tested) {#TC-010}
     tags: #unit-tests, #test-cases
 
 
 #### Ship Tests
-* [unknown] BargeTest {#TC-001}
+* [x] BargeTest - **passed** @LETI-110331 {#TC-001}
 
-* [unknown] CaravelTest {#TC-002}
+* [x] CaravelTest - **passed** @LETI-110331 {#TC-002}
 
-* [unknown] CarrackTest {#TC-003}
+* [x] CarrackTest - **passed** @LETI-110331 {#TC-003}
 
-* [unknown] FrigateTest {#TC-004}
+* [x] FrigateTest - **passed** @LETI-110331 {#TC-004}
 
-* [unknown] GalleonTest {#TC-005}
+* [x] GalleonTest - **passed** @LETI-110331 {#TC-005}
 
-
+Tags: #unit-tests, #release-1.0
